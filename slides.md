@@ -151,6 +151,109 @@ How we handle the "Single Page" experience in the Web Component ecosystem:
 
 ---
 
+# Implementation: @lit-labs/router
+
+The lightweight, official solution for Lit.
+
+````md magic-move
+```ts {1-2}
+// 1. Import the Router
+import { Router } from '@lit-labs/router';
+
+export class AppShell extends LitElement {
+  // ...
+}
+```
+
+```ts {5-10}
+// 2. Initialize Routes in AppShell
+import { Router } from '@lit-labs/router';
+
+export class AppShell extends LitElement {
+  private _router = new Router(this, [
+    { path: '/', render: () => html`<home-page></home-page>` },
+    { path: '/todos', render: () => html`<todos-page></todos-page>` },
+    { path: '/todos/:id', render: (p) => html`<detail-page .id=${p.id}></detail-page>` }
+  ]);
+  
+  // ...
+}
+```
+
+```ts {7-15}
+// 3. Define the Router Outlet
+import { Router } from '@lit-labs/router';
+
+export class AppShell extends LitElement {
+  private _router = new Router(this, [ /* ... routes ... */ ]);
+
+  render() {
+    return html`
+      <nav>
+        <a href="/">Home</a>
+        <a href="/todos">Todos</a>
+      </nav>
+      <main>${this._router.outlet()}</main>
+    `;
+  }
+}
+```
+````
+
+---
+
+# Implementation: Vaadin Router
+
+A powerful, framework-agnostic alternative.
+
+````md magic-move
+```ts {1-2}
+// 1. Import the Router
+import { Router } from '@vaadin/router';
+
+export class AppShell extends LitElement {
+  // ...
+}
+```
+
+```ts {1,5-15}
+// 2. Initialize in firstUpdated
+import { Router } from '@vaadin/router';
+
+export class AppShell extends LitElement {
+  protected firstUpdated() {
+    const outlet = this.shadowRoot?.querySelector('#outlet');
+    const router = new Router(outlet);
+    
+    router.setRoutes([
+      { path: '/', component: 'home-page' },
+      { path: '/todos', component: 'todos-page' },
+      { path: '(.*)', component: 'not-found-page' }
+    ]);
+  }
+  
+  // ...
+}
+```
+
+```ts {9-11}
+// 3. Render the Outlet Element
+import { Router } from '@vaadin/router';
+
+export class AppShell extends LitElement {
+  protected firstUpdated() {
+    // ... initialization logic ...
+  }
+
+  render() {
+    return html`<main id="outlet"></main>`;
+  }
+}
+```
+````
+
+---
+
 # Data Flow: Context & Tasks
 
 Managing complexity without the overhead of massive state libraries:
@@ -227,7 +330,7 @@ class TodoView extends LitElement {
 }
 ```
 
-```ts
+```ts {3,4,5,6-11}
 // 2. Rendering the Task States
 render() {
   return this._apiTask.render({
@@ -375,14 +478,28 @@ The 2026 advantage of building with Lit:
 - **Versatility**: Use the same components in React, Vue, or vanilla HTML.
 
 ---
+layout: two-cols
+---
+
+# App Shell Github Template
+
+There is a Github Template that can help you get started and apply all these concepts very quickly!
+
+- Navigation ready
+- MFE Host App Ready
+- Fill in the gaps
+- Add on as needed
+- ❤️ Built with Love by hand by @quincarter
+
+::right::
+<img src="./qr-code.png" alt="qr code" height="70%" width="70%" style="border-radius:20px; margin-left:2rem;"/>
+
+---
 layout: center
 class: text-center
 ---
 
-# Thank You!
+# Questions?
 
-**Building Apps with Lit Element in 2026**
+**Thank you!**
 
-[Documentation](https://lit.dev) · [GitHub](https://github.com/lit/lit) · [Sli.dev](https://sli.dev)
-
-<PoweredBySlidev mt-10 />
