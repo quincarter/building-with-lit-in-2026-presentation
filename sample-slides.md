@@ -5,7 +5,7 @@ theme: seriph
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: Welcome to Slidev
+title: Building Apps with Lit Element in 2026
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
@@ -24,7 +24,7 @@ comark: true
 duration: 45min
 ---
 
-# Welcome to Slidev
+# Building Apps with Lit Element in 2026
 
 Presentation slides for developers
 
@@ -578,7 +578,7 @@ Double-click on the draggable elements to edit their positions.
 </v-drag>
 ```
 
-<v-drag pos="663,206,261,_,-15">
+<v-drag pos="557,198,261,_,-15">
   <div text-center text-3xl border border-main rounded>
     Double-click me!
   </div>
@@ -592,7 +592,7 @@ Double-click on the draggable elements to edit their positions.
 <v-drag-arrow two-way />
 ```
 
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
+<v-drag-arrow pos="93,455,253,46" two-way op70 />
 
 ---
 src: ./pages/imported-slides.md
