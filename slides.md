@@ -41,15 +41,15 @@ transition: fade-out
 
 # The Framework Landscape
 
-Modern web development is dominated by powerful frameworks:
+Modern web development is dominated by popular tools:
 
-- **React**: Functional patterns, massive ecosystem.
-- **Angular**: Opinionated, batteries-included for enterprise.
-- **Vue**: Approachable, progressive, and highly flexible.
-- **Svelte**: Compiler-first, minimal runtime overhead.
+- **React**: functional patterns, massive ecosystem.
+- **Angular**: opinionated, batteries-included for enterprise.
+- **Vue**: approachable, progressive, and highly flexible.
+- **Svelte**: compiler-first, minimal runtime overhead.
 
 **What makes them good for building apps?**
-Component models, declarative UIs, dependency management, and robust developer experience.
+Component models, declarative UIs, dependency management, and great developer experience.
 
 <style>
 h1 {
@@ -90,12 +90,12 @@ Testing notes here
 
 To build a real-world application in 2026, we need more than just components:
 
-- 🏗️ **Application Structure**: Clear separation of concerns.
-- 🛣️ **Routing**: Handling navigation and deep linking.
-- 🔄 **Data Flow**: Prop drilling vs. Context.
-- 🧠 **State Management**: Lightweight, reactive state machines.
-- 🛠️ **Putting It All Together**: Reusable, scalable Views with a View Mixin
-- 📦 **Packaging**: Micro-frontends and lightweight bundles.
+- 🏗️ **Application Structure**: clear separation of concerns.
+- 🛣️ **Routing**: handling navigation and deep linking.
+- 🔄 **Data Flow**: prop drilling vs. Context.
+- 🧠 **State Management**: lightweight, reactive state machines.
+- 🛠️ **Putting It All Together**: reusable views built with a View Mixin
+- 📦 **Packaging**: micro-frontends and lightweight bundles.
 
 ---
 layout: two-cols
@@ -105,14 +105,14 @@ layout: two-cols
 
 Our "App Shell" architecture:
 
-- **src/app-shell.ts**: Main entry & layout
-- **components/**: Atomic UI (Cards, Charts, Todos)
-- **views/**: Page-level components & Mixins
+- **src/app-shell.ts**: main entry & layout
+- **components/**: atomic UI (Cards, Charts, Todos)
+- **views/**: page-level components & Mixins
 - **shared/**:
-    - **configuration/**: Routes & MFE config
-    - **contexts/**: Auth, Nav, MFE loaders
-    - **stores/**: Signal-based state
-    - **utilities/**: Shared logic
+    - **configuration/**: routes & MFE config
+    - **contexts/**: auth, Nav, MFE loaders
+    - **stores/**: signal-based state
+    - **utilities/**: shared logic
 
 ::right::
 
@@ -204,7 +204,7 @@ export class AppShell extends LitElement {
 
 # Implementation: Vaadin Router
 
-A powerful, framework-agnostic alternative.
+A powerful, standalone alternative.
 
 ````md magic-move
 ```ts {1-2}
@@ -268,7 +268,7 @@ Managing complexity without the overhead of massive state libraries:
   
 ---
 
-# Deep Dive: @lit/context
+# Context in Lit: @lit/context
 
 Dependency injection for the component tree.
 
@@ -310,7 +310,7 @@ export class MyView extends LitElement {
 
 ---
 
-# Deep Dive: @lit/tasks
+# Async State: @lit/tasks
 
 Managing asynchronous state declaratively.
 
@@ -350,7 +350,7 @@ render() {
 <!--
 - **@lit/task** is a reactive controller that manages asynchronous work within the component lifecycle.
 - In **Step 1**, we instantiate the task. The `task` property is the actual async logic, and `args` is a function that returns an array of reactive dependencies.
-- **Key point:** Whenever any property used in `args` (like `this.selectedTodoId`) changes, the task automatically resets and re-runs. No manual `watch` or `updated` logic required.
+- Whenever any property used in `args` (like `this.selectedTodoId`) changes, the task automatically resets and re-runs. No manual `watch` or `updated` logic required.
 - In **Step 2**, we use the `render()` method of the task. This is a declarative API that forces you to handle all three UI states: Pending, Error, and Complete.
 - This pattern eliminates the "boolean soup" (`isLoading`, `isError`, etc.) typically found in React or Vue components, keeping the main render method clean and type-safe.
 -->
@@ -451,9 +451,9 @@ export class TodosPage extends ViewMixin(LitElement) {
 
 Why we moved away from heavy-weight state containers in 2026:
 
-- **Fine-grained reactivity**: Only the components using the signal re-render.
+- **Fine-grained reactivity**: only the components using the signal re-render.
 - **Lightweight Stores**: `todo-list.store.ts` manages state with minimal boilerplate.
-- **Native Integration**: Seamlessly integrated into Lit components via `@lit-labs/preact-signals`.
+- **Native Integration**: directly integrated into Lit components via `@lit-labs/preact-signals`.
 
 ```ts
 // Example: todo.store.ts
@@ -471,11 +471,11 @@ export const addTodo = (text: string) => {
 
 The 2026 advantage of building with Lit:
 
-- **Zero Framework Lock-in**: Web Components are the platform.
-- **MFE Ready**: Seamlessly load Vite-based micro-frontends via `mfe-loader.utility.ts`.
-- **Modern Tooling**: Powered by **Vite** and **Biome** for lightning-fast development.
-- **Performance**: Lit's tiny footprint (~5KB) ensures the fastest Time to Interactive.
-- **Versatility**: Use the same components in React, Vue, or vanilla HTML.
+- **Zero Framework Lock-in**: web components are the platform.
+- **MFE Ready**: load Vite-based micro-frontends via `mfe-loader.utility.ts`.
+- **Modern Tooling**: powered by **Vite** and **Biome** for lightning-fast development.
+- **Performance**: a tiny footprint (~5KB) ensures the fastest Time to Interactive.
+- **Versatility**: use the same components in React, Vue, or vanilla HTML.
 
 ---
 layout: two-cols
