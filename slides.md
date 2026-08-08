@@ -545,6 +545,9 @@ There is a Github Template that can help you get started and apply all these con
 
 ::right::
 <img src="./qr-code.png" alt="qr code" height="70%" width="70%" style="border-radius:20px; margin-left:2rem;"/>
+
+Use this template - [quincarter/app-shell-starter](https://github.com/quincarter/app-shell-starter)
+
 <img src="./create-lit-app.png" alt="codesnippet" width="80%" style="border-radius:20px; margin-left:2rem;"/>
 
 ---
