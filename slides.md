@@ -103,7 +103,7 @@ layout: two-cols
 
 # Application Structure
 
-Our "App Shell" architecture:
+Our App Shell architecture:
 
 - **src/app-shell.ts**: main entry & layout
 - **components/**: atomic UI (Cards, Charts, Todos)
@@ -133,6 +133,58 @@ src
     ├── home-page
     └── todos-page
 ```
+
+---
+layout: two-cols
+---
+
+# Architectural Approach: Step-by-Step Flow
+
+The end-to-end process for building our Lit application architecture:
+
+```mermaid
+flowchart TD
+    A["vite create new lit app"] --> B["clear out the boilerplate"]
+    B --> C["add lit/context"]
+    C --> D["add lit-labs/router"]
+```
+
+::right::
+
+```mermaid
+flowchart TD
+    E["add navigation configuration"] --> F["add navigation context"]
+    F --> G["add new page"]
+    G --> H["create ViewMixin"]
+```
+
+<!--
+This flowchart outlines our systematic approach to bootstrapping and structuring a modern Lit application.
+-->
+
+---
+layout: two-cols
+---
+
+# Architecture Breakdown
+
+Step-by-step path from project initialization to view standardization:
+
+1. **Bootstrap Project**: Initialize with `vite create new lit app` using TypeScript template.
+2. **Clean Slate**: Clear out boilerplate code, starter assets, and sample counter components.
+3. **Dependency Injection**: Add `@lit/context` to manage global app states & dependencies.
+4. **Routing System**: Add `@lit-labs/router` to handle client-side page routing.
+
+::right::
+
+5. **Nav Config**: Add navigation configuration (`navigation.config.ts`) listing route definitions.
+6. **Nav Context**: Add navigation context (`navigation.context.ts`) & provide context at shell level.
+7. **Create Views**: Add new page components (e.g. `home-page`, `todos-page`) in `views/`.
+8. **ViewMixin**: Create & apply `ViewMixin` to encapsulate shared page logic, context consumption, and MFE loading.
+
+<!--
+Each stage builds logically on top of the previous one to form a scalable component architecture.
+-->
 
 ---
 
@@ -493,6 +545,7 @@ There is a Github Template that can help you get started and apply all these con
 
 ::right::
 <img src="./qr-code.png" alt="qr code" height="70%" width="70%" style="border-radius:20px; margin-left:2rem;"/>
+<img src="./create-lit-app.png" alt="codesnippet" width="80%" style="border-radius:20px; margin-left:2rem;"/>
 
 ---
 layout: center
